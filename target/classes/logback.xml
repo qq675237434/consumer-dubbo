@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" debug="false">
+	<property name="log.base" value="logs" />
+	<property name="log.proj" value="app" />
+	<property name="logPattern"
+		value="%date|%thread|%X{uid}|%X{url}|%level{8}|%logger{60}:%line|%msg %ex ------%n"></property>
+	<appender name="stdoutAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${logPattern}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- logger -->
+	<logger name="traceLogger" additivity="false">
+		<level value="info" />
+		<appender-ref ref="asyncTraceAppender" />
+	</logger>
+
+	<logger name="com.netease.cloud">
+		<level value="info" />
+	</logger>
+
+	<logger name="com.baidu.disconf.client">
+		<level value="warn" />
+	</logger>
+
+	<root>
+		<level value="info" />
+		<appender-ref ref="stdoutAppender" />
+	</root>
+</configuration>
